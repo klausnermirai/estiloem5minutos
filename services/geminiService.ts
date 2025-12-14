@@ -1,13 +1,11 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { AdviceTone } from "../types";
 
-const apiKey = process.env.API_KEY || '';
-
-// Initialize client securely
-const ai = new GoogleGenAI({ apiKey: apiKey });
+// Initialize client securely using process.env.API_KEY as per guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateStyleMantra = async (tone: AdviceTone): Promise<{ mantra: string; tip: string }> => {
-  if (!apiKey) {
+  if (!process.env.API_KEY) {
     // Fallback if no API key is present (for demo purposes if env is missing)
     return {
       mantra: "Hoje eu escolho me sentir radiante e capaz.",
